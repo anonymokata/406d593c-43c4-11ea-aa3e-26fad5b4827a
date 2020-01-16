@@ -4,4 +4,4 @@ class Paper(object):
         self.page_text = ''
 
     def display_page(self):
-        return ''
+        return self.page_text
