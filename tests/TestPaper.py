@@ -1,6 +1,7 @@
 import unittest
 from pencil_durability import Paper
 
+
 class TestPaper(unittest.TestCase):
     def test_that_initializing_blank_paper_is_blank_paper(self):
         paper = Paper()

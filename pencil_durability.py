@@ -6,7 +6,11 @@ class Paper(object):
     def display_page(self):
         return self.page_text
 
+
 class Pencil(object):
 
     def write(self, paper, text):
-        paper.page_text = text
+        new_page_text = []
+        new_page_text.append(paper.page_text)
+        new_page_text.append(text)
+        paper.page_text = ''.join(new_page_text)
