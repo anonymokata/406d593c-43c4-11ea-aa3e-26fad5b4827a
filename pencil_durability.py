@@ -9,6 +9,9 @@ class Paper(object):
 
 class Pencil(object):
 
+    def __init__(self, point_durability=None):
+        self.point_durability = point_durability
+
     def write(self, paper, text):
         new_page_text = []
         new_page_text.append(paper.page_text)

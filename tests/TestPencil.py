@@ -17,6 +17,11 @@ class TestPencil(unittest.TestCase):
         pencil.write(paper, ' down by the sea shore')
         self.assertEqual('She sells sea shells down by the sea shore', paper.display_page())
 
+    def test_that_point_durability_can_be_set_on_construction(self):
+        point_durability = 10
+        pencil = Pencil(point_durability=point_durability)
+        self.assertEqual(point_durability, pencil.point_durability)
+
 
 if __name__ == '__main__':
     unittest.main()
