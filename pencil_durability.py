@@ -5,3 +5,8 @@ class Paper(object):
 
     def display_page(self):
         return self.page_text
+
+class Pencil(object):
+
+    def write(self, paper, text):
+        paper.page_text = text
