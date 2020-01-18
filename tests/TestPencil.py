@@ -22,6 +22,13 @@ class TestPencil(unittest.TestCase):
         pencil = Pencil(point_durability=point_durability)
         self.assertEqual(point_durability, pencil.point_durability)
 
+    def test_that_pencil_not_dull_when_lower_case_text_len_is_less_than_point_durability(self):
+        point_durability = 10
+        pencil = Pencil(point_durability=point_durability)
+        paper = Paper()
+        pencil.write(paper, 'test')
+        self.assertEqual(6, pencil.point_durability)
+
 
 if __name__ == '__main__':
     unittest.main()
