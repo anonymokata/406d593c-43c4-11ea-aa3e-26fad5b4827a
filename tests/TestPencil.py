@@ -36,6 +36,13 @@ class TestPencil(unittest.TestCase):
         pencil.write(paper, 'TEST')
         self.assertEqual(2, pencil.point_durability)
 
+    def test_that_pencil_point_durability_does_not_change_for_spaces(self):
+        point_durability = 10
+        pencil = Pencil(point_durability=point_durability)
+        paper = Paper()
+        pencil.write(paper, 'test    ')  # 4 spaces written to paper
+        self.assertEqual(6, pencil.point_durability)
+
 
 if __name__ == '__main__':
     unittest.main()
