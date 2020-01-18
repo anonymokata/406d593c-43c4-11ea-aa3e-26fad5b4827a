@@ -30,3 +30,5 @@ class Pencil(object):
     def _change_point_durability(self, character):
         if character.islower():
             self.point_durability -= 1
+        elif character.isupper():
+            self.point_durability -= 2
