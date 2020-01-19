@@ -15,11 +15,6 @@ class Pencil(object):
             self.point_durability = 0
 
     def write(self, paper, text):
-        # new_page_text = []
-        # new_page_text.append(paper.page_text)
-        # new_page_text.append(text)
-        # new_page_text = [list(text) for text in new_page_text]
-        # new_page_text_characters = [character for sublist in new_page_text for character in sublist]
         new_text_characters = [character for character in text]
 
         final_page_text = []
@@ -27,7 +22,7 @@ class Pencil(object):
         print(new_text_characters)
         for character in new_text_characters:
             self._change_point_durability(character)
-            if self.point_durability > 0:
+            if self.point_durability >= 0:
                 final_page_text.append(character)
             else:
                 final_page_text.append(' ')

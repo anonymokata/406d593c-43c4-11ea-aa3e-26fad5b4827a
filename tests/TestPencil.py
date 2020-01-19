@@ -66,5 +66,13 @@ class TestPencil(unittest.TestCase):
         pencil.write(paper, 'test')
         self.assertEqual('    ', paper.display_page())  # paper should contain 4 spaces
 
+    def test_that_pencil_that_becomes_dull_during_writing_writes_empty_spaces(self):
+        point_durability = 4
+        pencil = Pencil(point_durability=point_durability)
+        paper = Paper()
+        pencil.write(paper, 'Test')
+        self.assertEqual('Tes ', paper.display_page())  # paper should contain one space at end
+
+
 if __name__ == '__main__':
     unittest.main()
