@@ -15,17 +15,23 @@ class Pencil(object):
             self.point_durability = 0
 
     def write(self, paper, text):
-        new_page_text = []
-        new_page_text.append(paper.page_text)
-        new_page_text.append(text)
-        new_page_text = [list(text) for text in new_page_text]
-        new_page_text_characters = [character for sublist in new_page_text for character in sublist]
+        # new_page_text = []
+        # new_page_text.append(paper.page_text)
+        # new_page_text.append(text)
+        # new_page_text = [list(text) for text in new_page_text]
+        # new_page_text_characters = [character for sublist in new_page_text for character in sublist]
+        new_text_characters = [character for character in text]
 
         final_page_text = []
-        print(new_page_text_characters)
-        for character in new_page_text_characters:
+        final_page_text.append(self._get_current_page_text(paper))
+        print(new_text_characters)
+        for character in new_text_characters:
             self._change_point_durability(character)
-        paper.page_text = ''.join(new_page_text_characters)
+            if self.point_durability > 0:
+                final_page_text.append(character)
+            else:
+                final_page_text.append(' ')
+        paper.page_text = ''.join(final_page_text)
 
     def _change_point_durability(self, character):
         ignore_characters = ['\n', ' ']
@@ -33,3 +39,7 @@ class Pencil(object):
             self.point_durability -= 1
         if character.isupper():
             self.point_durability -= 1
+
+    def _get_current_page_text(self, paper):
+        current_page_text = paper.display_page()
+        return current_page_text

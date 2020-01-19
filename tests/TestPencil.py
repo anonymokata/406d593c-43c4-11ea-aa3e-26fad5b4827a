@@ -6,13 +6,15 @@ class TestPencil(unittest.TestCase):
 
     def test_that_pencil_writes_on_paper(self):
         paper = Paper()
-        pencil = Pencil()
+        point_durability = 50
+        pencil = Pencil(point_durability=point_durability)
         pencil.write(paper, 'She sells sea shells')
         self.assertEqual('She sells sea shells', paper.display_page())
 
     def test_that_pencil_writes_where_it_left_off(self):
         paper = Paper()
-        pencil = Pencil()
+        point_durability = 50
+        pencil = Pencil(point_durability=point_durability)
         pencil.write(paper, 'She sells sea shells')
         pencil.write(paper, ' down by the sea shore')
         self.assertEqual('She sells sea shells down by the sea shore', paper.display_page())
@@ -56,7 +58,13 @@ class TestPencil(unittest.TestCase):
         paper = Paper()
         pencil.write(paper, '~!@#$%^&*()_+`-=:",./<>?{}[]|')  # 29 special chars written to paper
         self.assertEqual(1, pencil.point_durability)
-        
+
+    def test_that_pencil_that_starts_dull_only_writes_empty_spaces(self):
+        point_durability = 0
+        pencil = Pencil(point_durability=point_durability)
+        paper = Paper()
+        pencil.write(paper, 'test')
+        self.assertEqual('    ', paper.display_page())  # paper should contain 4 spaces
 
 if __name__ == '__main__':
     unittest.main()
