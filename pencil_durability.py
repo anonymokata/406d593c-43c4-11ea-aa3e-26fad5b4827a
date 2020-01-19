@@ -23,11 +23,12 @@ class Pencil(object):
         final_page_text.append(self._get_current_page_text(paper))
         print(new_text_characters)
         for character in new_text_characters:
-            self._change_point_durability(character)
-            if self.point_durability >= 0:
+            # self._change_point_durability(character)
+            if self.point_durability > 0:
                 final_page_text.append(character)
             else:
                 final_page_text.append(' ')
+            self._change_point_durability(character)
         paper.page_text = ''.join(final_page_text)
 
     def sharpen(self):
@@ -39,6 +40,8 @@ class Pencil(object):
             self.point_durability -= 1
         if character.isupper():
             self.point_durability -= 1
+        if self.point_durability <= 0:
+            self.point_durability = 0
 
     def _get_current_page_text(self, paper):
         current_page_text = paper.display_page()

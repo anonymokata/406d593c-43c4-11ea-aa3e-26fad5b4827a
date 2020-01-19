@@ -82,6 +82,16 @@ class TestPencil(unittest.TestCase):
         pencil.sharpen()
         self.assertEqual(15, pencil.point_durability)
 
+    def test_that_pencil_that_becomes_dull_picks_up_after_spaces_when_sharpened(self):
+        point_durability = 5
+        pencil = Pencil(point_durability=point_durability)
+        paper = Paper()
+        pencil.write(paper, 'Test sharpening')
+        self.assertEqual(0, pencil.point_durability)
+        pencil.sharpen()
+        pencil.write(paper, 'Test sharpening')
+        self.assertEqual('Test           Test           ', paper.display_page())
+
 
 if __name__ == '__main__':
     unittest.main()
