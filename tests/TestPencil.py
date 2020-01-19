@@ -73,6 +73,15 @@ class TestPencil(unittest.TestCase):
         pencil.write(paper, 'Test')
         self.assertEqual('Tes ', paper.display_page())  # paper should contain one space at end
 
+    def test_that_pencil_that_becomes_dull_returns_to_start_point_durability_when_sharpened(self):
+        point_durability = 15
+        pencil = Pencil(point_durability=point_durability)
+        paper = Paper()
+        pencil.write(paper, 'Test sharpening')
+        self.assertEqual(0, pencil.point_durability)
+        pencil.sharpen()
+        self.assertEqual(15, pencil.point_durability)
+
 
 if __name__ == '__main__':
     unittest.main()

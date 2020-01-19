@@ -10,8 +10,10 @@ class Paper(object):
 class Pencil(object):
 
     def __init__(self, point_durability=None):
+        self.start_point_durability = point_durability
         self.point_durability = point_durability
         if point_durability is None:
+            self.start_point_durability = 0
             self.point_durability = 0
 
     def write(self, paper, text):
@@ -27,6 +29,9 @@ class Pencil(object):
             else:
                 final_page_text.append(' ')
         paper.page_text = ''.join(final_page_text)
+
+    def sharpen(self):
+        self.point_durability = self.start_point_durability
 
     def _change_point_durability(self, character):
         ignore_characters = ['\n', ' ']
