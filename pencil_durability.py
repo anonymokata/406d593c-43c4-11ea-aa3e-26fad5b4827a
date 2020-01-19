@@ -9,12 +9,14 @@ class Paper(object):
 
 class Pencil(object):
 
-    def __init__(self, point_durability=None):
+    def __init__(self, point_durability=None, initial_length=None):
         self.start_point_durability = point_durability
         self.point_durability = point_durability
         if point_durability is None:
             self.start_point_durability = 0
             self.point_durability = 0
+
+        self.length = initial_length
 
     def write(self, paper, text):
         new_text_characters = [character for character in text]

@@ -92,6 +92,11 @@ class TestPencil(unittest.TestCase):
         pencil.write(paper, 'Test sharpening')
         self.assertEqual('Test           Test           ', paper.display_page())
 
+    def test_that_creation_of_pencil_with_initial_length_creates_pencil_with_correct_length(self):
+        initial_length = 5
+        pencil = Pencil(initial_length=initial_length)
+        self.assertEqual(5, pencil.length)
+
 
 if __name__ == '__main__':
     unittest.main()
