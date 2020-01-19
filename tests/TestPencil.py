@@ -50,6 +50,13 @@ class TestPencil(unittest.TestCase):
         pencil.write(paper, '\ntest\ntest\n\n\n')  # 4 newlines written to paper
         self.assertEqual(2, pencil.point_durability)
 
+    def test_that_pencil_point_durability_decrements_by_one_for_special_characters(self):
+        point_durability = 30
+        pencil = Pencil(point_durability=point_durability)
+        paper = Paper()
+        pencil.write(paper, '~!@#$%^&*()_+`-=:",./<>?{}[]|')  # 29 special chars written to paper
+        self.assertEqual(1, pencil.point_durability)
+        
 
 if __name__ == '__main__':
     unittest.main()

@@ -28,7 +28,8 @@ class Pencil(object):
         paper.page_text = ''.join(new_page_text_characters)
 
     def _change_point_durability(self, character):
-        if character.islower():
+        ignore_characters = ['\n', ' ']
+        if character not in ignore_characters:
             self.point_durability -= 1
-        elif character.isupper():
-            self.point_durability -= 2
+        if character.isupper():
+            self.point_durability -= 1
