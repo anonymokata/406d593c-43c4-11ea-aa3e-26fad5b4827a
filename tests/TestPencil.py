@@ -75,7 +75,8 @@ class TestPencil(unittest.TestCase):
 
     def test_that_pencil_that_becomes_dull_returns_to_start_point_durability_when_sharpened(self):
         point_durability = 15
-        pencil = Pencil(point_durability=point_durability)
+        initial_length = 5
+        pencil = Pencil(point_durability=point_durability, initial_length=initial_length)
         paper = Paper()
         pencil.write(paper, 'Test sharpening')
         self.assertEqual(0, pencil.point_durability)
@@ -84,7 +85,8 @@ class TestPencil(unittest.TestCase):
 
     def test_that_pencil_that_becomes_dull_picks_up_after_spaces_when_sharpened(self):
         point_durability = 5
-        pencil = Pencil(point_durability=point_durability)
+        initial_length = 5
+        pencil = Pencil(point_durability=point_durability, initial_length=initial_length)
         paper = Paper()
         pencil.write(paper, 'Test sharpening')
         self.assertEqual(0, pencil.point_durability)
@@ -96,6 +98,12 @@ class TestPencil(unittest.TestCase):
         initial_length = 5
         pencil = Pencil(initial_length=initial_length)
         self.assertEqual(5, pencil.length)
+
+    def test_that_sharpening_pencil_reduces_length_by_one(self):
+        initial_length = 5
+        pencil = Pencil(initial_length=initial_length)
+        pencil.sharpen()
+        self.assertEqual(4, pencil.length)
 
 
 if __name__ == '__main__':

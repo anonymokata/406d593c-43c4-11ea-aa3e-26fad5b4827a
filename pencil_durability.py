@@ -34,6 +34,12 @@ class Pencil(object):
         paper.page_text = ''.join(final_page_text)
 
     def sharpen(self):
+        if self.length > 0:
+            self.length -= 1
+        else:
+            self.length = 0
+            raise ValueError('Sorry, the pencil cannot be sharpened anymore because the length is \
+                             already zero')
         self.point_durability = self.start_point_durability
 
     def _change_point_durability(self, character):
