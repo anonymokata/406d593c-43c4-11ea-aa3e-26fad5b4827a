@@ -1,3 +1,6 @@
+from Eraser import Eraser
+
+
 class Pencil(object):
 
     def __init__(self, point_durability=None, initial_length=None):
@@ -8,6 +11,7 @@ class Pencil(object):
             self.point_durability = 0
 
         self.length = initial_length
+        self.eraser = Eraser()
 
     def write(self, paper, text):
         new_text_characters = [character for character in text]
@@ -34,7 +38,7 @@ class Pencil(object):
         self.point_durability = self.start_point_durability
 
     def erase(self, paper, text_to_erase):
-        self.eraser.erase()
+        self.eraser.erase(paper, text_to_erase)
 
     def _change_point_durability(self, character):
         ignore_characters = ['\n', ' ']
