@@ -105,6 +105,12 @@ class TestPencil(unittest.TestCase):
         pencil.sharpen()
         self.assertEqual(4, pencil.length)
 
+    def test_that_trying_to_sharpen_zero_length_pencil_raises_error(self):
+        initial_length = 0
+        pencil = Pencil(initial_length=initial_length)
+        with self.assertRaises(ValueError):
+            pencil.sharpen()
+
 
 if __name__ == '__main__':
     unittest.main()
