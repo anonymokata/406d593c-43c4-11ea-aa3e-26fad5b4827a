@@ -17,7 +17,7 @@ class Pencil(object):
         new_text_characters = [character for character in text]
 
         final_page_text = []
-        final_page_text.append(self._get_current_page_text(paper))
+        final_page_text.append(paper.display_page())
         print(new_text_characters)
         for character in new_text_characters:
             # self._change_point_durability(character)
@@ -48,7 +48,3 @@ class Pencil(object):
             self.point_durability -= 1
         if self.point_durability <= 0:
             self.point_durability = 0
-
-    def _get_current_page_text(self, paper):
-        current_page_text = paper.display_page()
-        return current_page_text
