@@ -14,6 +14,11 @@ class TestEraser(unittest.TestCase):
         pencil.erase(paper, 'eraser')
         self.assertEqual('test the eraser test the       ', paper.display_page())
 
+    def test_that_eraser_can_be_initialized_with_a_durability(self):
+        durability = 10
+        eraser = Eraser(durability=durability)
+        self.assertEqual(10, eraser.durability)
+
 
 if __name__ == '__main__':
     unittest.main()
