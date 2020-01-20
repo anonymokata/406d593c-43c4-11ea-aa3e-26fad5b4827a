@@ -42,6 +42,19 @@ class Pencil(object):
                              already zero')
         self.point_durability = self.start_point_durability
 
+    def erase(self, paper, text_to_erase):
+        current_page_text = self._get_current_page_text(paper)
+        start_index_of_word_to_erase = current_page_text.rfind(text_to_erase)
+        first_half_of_text = current_page_text[:start_index_of_word_to_erase]
+        second_half_of_text = current_page_text[start_index_of_word_to_erase:]
+        spaces_for_text_to_erase = [' ' for character in text_to_erase]
+        spaces = ''.join(spaces_for_text_to_erase)
+        second_half_of_text = second_half_of_text.replace(text_to_erase, spaces)
+        print('{} : {}'.format(first_half_of_text, second_half_of_text))
+        new_page_text = first_half_of_text + second_half_of_text
+        print('new page text: {}'.format(new_page_text))
+        paper.page_text = new_page_text
+
     def _change_point_durability(self, character):
         ignore_characters = ['\n', ' ']
         if character not in ignore_characters:
