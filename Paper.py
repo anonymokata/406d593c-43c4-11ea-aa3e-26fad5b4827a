@@ -1,10 +1,13 @@
 class Paper(object):
 
     def __init__(self):
-        self.page_text = ''
+        self._page_text = ''
 
     def display_page(self):
-        return self.page_text
+        return self._page_text
+
+    def add_text(self, text_to_add):
+        self._page_text = text_to_add
 
     def remove_text(self, text_to_remove):
         current_page_text = self._get_current_page_text()
@@ -15,7 +18,7 @@ class Paper(object):
         spaces = ''.join(spaces_for_text_to_erase)
         second_half_of_text = second_half_of_text.replace(text_to_remove, spaces)
         new_page_text = first_half_of_text + second_half_of_text
-        self.page_text = new_page_text
+        self._page_text = new_page_text
 
     def _get_current_page_text(self):
         current_page_text = self.display_page()
