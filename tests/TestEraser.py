@@ -19,6 +19,17 @@ class TestEraser(unittest.TestCase):
         eraser = Eraser(durability=durability)
         self.assertEqual(10, eraser.durability)
 
+    def test_that_eraser_degrades_correct_amount_for_non_whitespace_characters(self):
+        durability = 10
+        eraser = Eraser(durability=durability)
+        point_durability = 50
+        initial_length = 5
+        pencil = Pencil(point_durability=point_durability, initial_length=initial_length, eraser=eraser)
+        paper = Paper()
+        pencil.write(paper, 'test that eraser degrades correct amount')
+        pencil.erase(paper, 'eraser')
+        self.assertEqual(4, eraser.durability)
+
 
 if __name__ == '__main__':
     unittest.main()
