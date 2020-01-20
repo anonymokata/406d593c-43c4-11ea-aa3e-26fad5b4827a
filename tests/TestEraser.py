@@ -30,6 +30,20 @@ class TestEraser(unittest.TestCase):
         pencil.erase(paper, 'eraser')
         self.assertEqual(4, eraser.durability)
 
+    def test_that_eraser_erases_multiple_words_correctly(self):
+        durability = 20
+        eraser = Eraser(durability=durability)
+        point_durability = 100
+        initial_length = 5
+        pencil = Pencil(point_durability=point_durability, initial_length=initial_length, eraser=eraser)
+        paper = Paper()
+        input_text = 'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
+        pencil.write(paper, input_text)
+        pencil.erase(paper, 'chuck')
+        pencil.erase(paper, 'chuck')
+        expected_text = 'How much wood would a woodchuck chuck if a wood      could       wood?'
+        self.assertEqual(expected_text, paper.display_page())
+
 
 if __name__ == '__main__':
     unittest.main()
