@@ -1,5 +1,5 @@
 import unittest
-from pencil_durability import Paper
+from Paper import Paper
 
 
 class TestPaper(unittest.TestCase):

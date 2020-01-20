@@ -1,5 +1,7 @@
 import unittest
-from pencil_durability import Paper, Pencil
+from Eraser import Eraser
+from Paper import Paper
+from Pencil import Pencil
 
 
 class TestEraser(unittest.TestCase):
