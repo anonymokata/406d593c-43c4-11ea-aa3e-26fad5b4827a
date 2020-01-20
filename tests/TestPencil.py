@@ -111,6 +111,16 @@ class TestPencil(unittest.TestCase):
         with self.assertRaises(ValueError):
             pencil.sharpen()
 
+    def test_that_pencil_that_is_sharpened_before_going_dull_continues_to_write(self):
+        point_durability = 20
+        initial_length = 5
+        pencil = Pencil(point_durability=point_durability, initial_length=initial_length)
+        paper = Paper()
+        pencil.write(paper, 'Testing sharpening.')
+        pencil.sharpen()
+        pencil.write(paper, ' Testing sharpening.')
+        self.assertEqual('Testing sharpening. Testing sharpening.', paper.display_page())
+
 
 if __name__ == '__main__':
     unittest.main()
