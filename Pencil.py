@@ -18,19 +18,16 @@ class Pencil(object):
 
     def write(self, paper, text):
         new_text_characters = [character for character in text]
-        final_page_text = []
-        final_page_text.append(paper.display_page())
+        new_text = []
 
         for character in new_text_characters:
-            # self._change_point_durability(character)
             if self.point_durability > 0:
-                final_page_text.append(character)
+                new_text.append(character)
             else:
-                final_page_text.append(' ')
+                new_text.append(' ')
             self._change_point_durability(character)
 
-        final_page_text = ''.join(final_page_text)
-        paper.add_text(final_page_text)
+        paper.add_text(new_text)
 
     def sharpen(self):
         if self.length > 0:

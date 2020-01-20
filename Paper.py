@@ -7,7 +7,10 @@ class Paper(object):
         return self._page_text
 
     def add_text(self, text_to_add):
-        self._page_text = text_to_add
+        final_page_text = []
+        final_page_text.append(self._page_text)
+        final_page_text.extend(text_to_add)
+        self._page_text = ''.join(final_page_text)
 
     def remove_text(self, text_to_remove):
         current_page_text = self._get_current_page_text()
