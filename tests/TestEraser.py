@@ -36,6 +36,17 @@ class TestEraser(unittest.TestCase):
         expected_text = 'How much wood would a woodchuck chuck if a wood      could       wood?'
         self.assertEqual(expected_text, self.paper.display_page())
 
+    def test_that_eraser_erases_word_in_opposite_order(self):
+        durability = 3
+        eraser = Eraser(durability=durability)
+        point_durability = 100
+        initial_length = 5
+        pencil = Pencil(point_durability=point_durability, initial_length=initial_length, eraser=eraser)
+        paper = Paper()
+        pencil.write(paper, 'Buffalo Bill')
+        pencil.erase(paper, 'Bill')
+        self.assertEqual('Buffalo B   ', paper.display_page())
+
 
 if __name__ == '__main__':
     unittest.main()
