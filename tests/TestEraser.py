@@ -33,7 +33,13 @@ class TestEraser(unittest.TestCase):
         self.pencil.erase(self.paper, 'test that')
         self.assertEqual(2, self.eraser.durability)
 
-    def test_that_eraser_erases_multiple_words_correctly(self):
+    def test_that_eraser_erases_multiple_words_at_one_time_correctly(self):
+        self.pencil.write(self.paper, 'test that eraser degrades correct amount')
+        self.pencil.erase(self.paper, 'test that')
+        expected_text = '          eraser degrades correct amount'
+        self.assertEqual(expected_text, self.paper.display_page())
+
+    def test_that_eraser_erases_multiple_words_one_after_another_correctly(self):
         input_text = 'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
         self.pencil.write(self.paper, input_text)
         self.pencil.erase(self.paper, 'chuck')
