@@ -5,6 +5,13 @@ from Pencil import Pencil
 
 class TestPencil(unittest.TestCase):
 
+    def setUp(self):
+        self.paper = Paper()
+        point_durability = 50
+        self.pencil = Pencil(point_durability=point_durability)
+        self.pencil.write(self.paper, 'She sells sea shells')
+        self.assertEqual('She sells sea shells', self.paper.display_page())
+
     def test_that_pencil_writes_on_paper(self):
         paper = Paper()
         point_durability = 50
