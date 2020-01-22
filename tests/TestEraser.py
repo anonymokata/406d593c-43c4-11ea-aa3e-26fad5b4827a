@@ -58,6 +58,11 @@ class TestEraser(unittest.TestCase):
         pencil.erase(paper, 'Bill')
         self.assertEqual('Buffalo B   ', paper.display_page())
 
+    def test_that_eraser_rasies_value_error_if_text_to_erase_is_not_present(self):
+        input_text = 'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
+        with self.assertRaises(ValueError):
+            self.pencil.erase(self.paper, 'how')
+
 
 if __name__ == '__main__':
     unittest.main()

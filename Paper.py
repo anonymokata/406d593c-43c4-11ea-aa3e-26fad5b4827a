@@ -15,6 +15,8 @@ class Paper(object):
     def remove_text(self, text_to_remove, num_characters_to_remove=None):
         current_page_text = self._get_current_page_text()
         start_index_of_text_to_remove = current_page_text.rfind(text_to_remove)
+        if start_index_of_text_to_remove == -1:
+            raise ValueError('Text cannot be removed because it is not present')
         first_half_of_text = current_page_text[:start_index_of_text_to_remove]
         second_half_of_text = current_page_text[start_index_of_text_to_remove:]
         if num_characters_to_remove is None:
