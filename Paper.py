@@ -36,7 +36,7 @@ class Paper(object):
         current_page_text = self._get_current_page_text()
         first_half_of_text = current_page_text[:location_index]
         second_half_of_text = list(current_page_text[location_index:])
-        print(second_half_of_text)
+        print('second_half_of_text: {}'.format(second_half_of_text))
         for i, character in enumerate(replacement_text):
             if character not in whitespace_chars and second_half_of_text[i] not in whitespace_chars:
                 second_half_of_text[i] = '@'
@@ -51,6 +51,7 @@ class Paper(object):
         location_index = self._removed_text_locations.get(erase_number)
         if location_index is not None:
             print('hello')
+            print('location index: {}'.format(location_index))
             self.replace_text_by_index(replacement_text, location_index)
 
     def _get_current_page_text(self):

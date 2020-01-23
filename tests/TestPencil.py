@@ -175,11 +175,11 @@ class TestPencil(unittest.TestCase):
         self.assertEqual('Pinea@@@eedit      the edit     .', self.paper.display_page())
 
     def test_that_pencil_can_edit_past_text_into_more_empty_spaces_from_another_erasure(self):
-        self.pencil.write(self.paper, 'test the edit test a edit test.')
+        self.pencil.write(self.paper, 'test the edit test a edit rest.')
         self.pencil.erase(self.paper, 'edit')
         self.pencil.erase(self.paper, 'test')
         self.pencil.edit(self.paper, replacement_text='Pineapple', method='erase', erase_number=2)
-        self.assertEqual('test the edit Pinea@ple  test.', self.paper.display_page())
+        self.assertEqual('test the edit Pinea@ple   rest.', self.paper.display_page())
 
 
 if __name__ == '__main__':
