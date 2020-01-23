@@ -1,7 +1,10 @@
 class Paper(object):
 
-    def __init__(self):
-        self._page_text = ''
+    def __init__(self, original_text=None):
+        if original_text is None:
+            self._page_text = ''
+        else:
+            self._page_text = original_text
         self._number_of_times_text_removed = 0
         self._removed_text_locations = {}
 

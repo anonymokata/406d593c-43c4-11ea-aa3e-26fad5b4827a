@@ -7,6 +7,10 @@ class TestPaper(unittest.TestCase):
         paper = Paper()
         self.assertEqual('', paper.display_page())
 
+    def test_that_paper_can_be_initialized_with_text(self):
+        paper = Paper('This is the original text of the paper')
+        self.assertEqual('This is the original text of the paper', paper.display_page())
+
 
 if __name__ == '__main__':
     unittest.main()
