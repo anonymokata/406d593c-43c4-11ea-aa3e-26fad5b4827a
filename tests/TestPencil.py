@@ -1,4 +1,5 @@
 import unittest
+from Eraser import Eraser
 from Paper import Paper
 from Pencil import Pencil
 
@@ -8,7 +9,9 @@ class TestPencil(unittest.TestCase):
     def setUp(self):
         self.paper = Paper()
         point_durability = 50
-        self.pencil = Pencil(point_durability=point_durability)
+        eraser_durability = 20
+        eraser = Eraser(eraser_durability)
+        self.pencil = Pencil(point_durability=point_durability, eraser=eraser)
 
     def test_that_pencil_writes_on_paper(self):
         paper = Paper()
@@ -129,33 +132,39 @@ class TestPencil(unittest.TestCase):
 
     def test_that_pencil_can_edit_paper_at_specific_location_with_at_symbol_if_char_present(self):
         self.pencil.write(self.paper, 'Testing sharpening.')
-        self.pencil.edit(self.paper, 0, 'R')
+        self.pencil.edit(self.paper, replacement_text='R', method='index', location_index=0)
         self.assertEqual('@esting sharpening.', self.paper.display_page())
 
     def test_that_pencil_can_edit_paper_at_specific_location_with_char_if_space_present(self):
         self.pencil.write(self.paper, 'Testing sharpening.')
-        self.pencil.edit(self.paper, 7, 'a')
+        self.pencil.edit(self.paper, replacement_text='a', method='index', location_index=7)
         self.assertEqual('Testingasharpening.', self.paper.display_page())
 
     def test_that_pencil_can_edit_paper_at_specific_location_with_space_if_space_present(self):
         self.pencil.write(self.paper, 'Testing sharpening.')
-        self.pencil.edit(self.paper, 7, ' ')
+        self.pencil.edit(self.paper, replacement_text=' ', method='index', location_index=7)
         self.assertEqual('Testing sharpening.', self.paper.display_page())
 
     def test_that_pencil_edit_with_overflow_replaces_non_whitespace_chars_with_at_symbols(self):
         self.pencil.write(self.paper, 'An       a day keeps the doctor away')
-        self.pencil.edit(self.paper, 3, 'artichoke')
+        self.pencil.edit(self.paper, replacement_text='artichoke', method='index', location_index=3)
         self.assertEqual('An artich@k@ay keeps the doctor away', self.paper.display_page())
 
     def test_that_pencil_edit_with_no_overflow_replaces_empty_spaces_with_edit_text(self):
         self.pencil.write(self.paper, 'An       a day keeps the doctor away')
-        self.pencil.edit(self.paper, 3, 'onion')
+        self.pencil.edit(self.paper, replacement_text='onion', method='index', location_index=3)
         self.assertEqual('An onion a day keeps the doctor away', self.paper.display_page())
 
     def test_that_pencil_edit_of_less_empty_spaces_than_original_empty_space_results_in_original_empty_spaces(self):
         self.pencil.write(self.paper, 'An       a day keeps the doctor away')  # 7 spaces
-        self.pencil.edit(self.paper, 3, '   ')  # edit with 3 empty spaces
+        self.pencil.edit(self.paper, replacement_text='   ', method='index', location_index=3)  # edit 3 empty spaces
         self.assertEqual('An       a day keeps the doctor away', self.paper.display_page())
+
+    def test_that_pencil_can_edit_paper_where_erasure_happened_with_at_symbol_if_char_present(self):
+        self.pencil.write(self.paper, 'Testing erase functionality')
+        self.pencil.erase(self.paper, 'Testing')
+        self.pencil.edit(self.paper, replacement_text='Pineapple', method='erase', erase_number=1)
+        self.assertEqual('Pineappl@rase functionality', self.paper.display_page())
 
 
 if __name__ == '__main__':
