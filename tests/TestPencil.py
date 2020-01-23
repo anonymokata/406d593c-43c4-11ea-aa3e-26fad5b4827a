@@ -152,6 +152,11 @@ class TestPencil(unittest.TestCase):
         self.pencil.edit(self.paper, 3, 'onion')
         self.assertEqual('An onion a day keeps the doctor away', self.paper.display_page())
 
+    def test_that_pencil_edit_of_less_empty_spaces_than_original_empty_space_results_in_original_empty_spaces(self):
+        self.pencil.write(self.paper, 'An       a day keeps the doctor away')  # 7 spaces
+        self.pencil.edit(self.paper, 3, '   ')  # edit with 3 empty spaces
+        self.assertEqual('An       a day keeps the doctor away', self.paper.display_page())
+
 
 if __name__ == '__main__':
     unittest.main()
