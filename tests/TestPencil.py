@@ -139,7 +139,7 @@ class TestPencil(unittest.TestCase):
 
     def test_that_pencil_can_edit_paper_at_specific_location_with_space_if_space_present(self):
         self.pencil.write(self.paper, 'Testing sharpening.')
-        self.pencil.edit(self.paper, 7, '')
+        self.pencil.edit(self.paper, 7, ' ')
         self.assertEqual('Testing sharpening.', self.paper.display_page())
 
 
