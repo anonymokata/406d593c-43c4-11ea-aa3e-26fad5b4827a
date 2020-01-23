@@ -37,6 +37,8 @@ class Paper(object):
         for i, character in enumerate(replacement_text):
             if character not in whitespace_chars and second_half_of_text[i] not in whitespace_chars:
                 second_half_of_text[i] = '@'
+            else:
+                second_half_of_text[i] = character
         second_half_of_text = ''.join(second_half_of_text)
         new_page_text = first_half_of_text + second_half_of_text
         self._page_text = new_page_text
