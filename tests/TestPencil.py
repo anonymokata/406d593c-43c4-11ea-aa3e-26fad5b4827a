@@ -142,10 +142,15 @@ class TestPencil(unittest.TestCase):
         self.pencil.edit(self.paper, 7, ' ')
         self.assertEqual('Testing sharpening.', self.paper.display_page())
 
-    def test_that_pencil_edits_with_overflow_replace_non_whitespace_chars_with_at_symbols(self):
+    def test_that_pencil_edit_with_overflow_replaces_non_whitespace_chars_with_at_symbols(self):
         self.pencil.write(self.paper, 'An       a day keeps the doctor away')
         self.pencil.edit(self.paper, 3, 'artichoke')
         self.assertEqual('An artich@k@ay keeps the doctor away', self.paper.display_page())
+
+    def test_that_pencil_edit_with_no_overflow_replaces_empty_spaces_with_edit_text(self):
+        self.pencil.write(self.paper, 'An       a day keeps the doctor away')
+        self.pencil.edit(self.paper, 3, 'onion')
+        self.assertEqual('An onion a day keeps the doctor away', self.paper.display_page())
 
 
 if __name__ == '__main__':
