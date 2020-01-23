@@ -166,6 +166,14 @@ class TestPencil(unittest.TestCase):
         self.pencil.edit(self.paper, replacement_text='Pineapple', method='erase', erase_number=1)
         self.assertEqual('Pineappl@rase functionality', self.paper.display_page())
 
+    def test_that_pencil_can_edit_paper_where_third_erasure_was_done(self):
+        self.pencil.write(self.paper, 'test the edit test the edit test.')
+        self.pencil.erase(self.paper, 'test')
+        self.pencil.erase(self.paper, 'test')
+        self.pencil.erase(self.paper, 'test')
+        self.pencil.edit(self.paper, replacement_text='Pineapple', method='erase', erase_number=3)
+        self.assertEqual('Pinea@@@eedit      the edit     .', self.paper.display_page())
+
 
 if __name__ == '__main__':
     unittest.main()
