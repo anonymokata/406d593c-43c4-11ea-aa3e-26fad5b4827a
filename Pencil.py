@@ -41,6 +41,19 @@ class Pencil(object):
     def erase(self, paper, text_to_erase):
         self.eraser.erase(paper, text_to_erase)
 
+    def edit(self, paper, location_index, replacement_text):
+        new_text_characters = [character for character in replacement_text]
+        new_text = []
+
+        for character in new_text_characters:
+            if self.point_durability > 0:
+                new_text.append(character)
+            else:
+                new_text.append(' ')
+            self._change_point_durability(character)
+
+        paper.replace_text(location_index, new_text)
+
     def _change_point_durability(self, character):
         ignore_characters = ['\n', ' ']
         if character not in ignore_characters:

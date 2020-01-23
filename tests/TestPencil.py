@@ -9,8 +9,6 @@ class TestPencil(unittest.TestCase):
         self.paper = Paper()
         point_durability = 50
         self.pencil = Pencil(point_durability=point_durability)
-        self.pencil.write(self.paper, 'She sells sea shells')
-        self.assertEqual('She sells sea shells', self.paper.display_page())
 
     def test_that_pencil_writes_on_paper(self):
         paper = Paper()
@@ -128,6 +126,11 @@ class TestPencil(unittest.TestCase):
         pencil.sharpen()
         pencil.write(paper, ' Testing sharpening.')
         self.assertEqual('Testing sharpening. Testing sharpening.', paper.display_page())
+
+    def test_that_pencil_can_edit_paper_at_specific_location_with_at_symbol_if_char_present(self):
+        self.pencil.write(self.paper, 'Testing sharpening.')
+        self.pencil.edit(self.paper, 0, 'R')
+        self.assertEqual('@esting sharpening.', self.paper.display_page())
 
 
 if __name__ == '__main__':

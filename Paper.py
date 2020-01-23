@@ -28,6 +28,19 @@ class Paper(object):
         new_page_text = first_half_of_text + second_half_of_text
         self._page_text = new_page_text
 
+    def replace_text(self, location_index, replacement_text):
+        whitespace_chars = [' ', '\n']
+        current_page_text = self._get_current_page_text()
+        first_half_of_text = current_page_text[:location_index]
+        second_half_of_text = list(current_page_text[location_index:])
+        print(second_half_of_text)
+        for i, character in enumerate(replacement_text):
+            if character not in whitespace_chars and second_half_of_text[i] not in whitespace_chars:
+                second_half_of_text[i] = '@'
+        second_half_of_text = ''.join(second_half_of_text)
+        new_page_text = first_half_of_text + second_half_of_text
+        self._page_text = new_page_text
+
     def _get_current_page_text(self):
         current_page_text = self.display_page()
         return current_page_text
