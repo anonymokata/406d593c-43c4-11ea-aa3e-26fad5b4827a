@@ -16,7 +16,6 @@ class Eraser(object):
 
     def erase(self, paper, text_to_erase):
         count_characters_that_degrade_eraser = self._count_non_whitespace_characters(text_to_erase)
-        print(count_characters_that_degrade_eraser)
         if self.durability < count_characters_that_degrade_eraser:
             count_characters_to_remove = self.durability
         else:
@@ -24,7 +23,6 @@ class Eraser(object):
         for character in text_to_erase:
             self._degrade_eraser(character)
 
-        print('count_characters_to_remove: {}'.format(count_characters_to_remove))
         if count_characters_to_remove > 0:
             paper.remove_text(text_to_erase, count_characters_to_remove)
         else:

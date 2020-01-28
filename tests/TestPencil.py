@@ -181,6 +181,12 @@ class TestPencil(unittest.TestCase):
         self.pencil.edit(self.paper, replacement_text='Pineapple', method='erase', erase_number=2)
         self.assertEqual('test the edit Pinea@ple   rest.', self.paper.display_page())
 
+    def test_that_pencil_correctly_edits_past_end_of_document_with_replacement_text(self):
+        self.pencil.write(self.paper, 'test edit past end of page')
+        self.pencil.erase(self.paper, 'page')
+        self.pencil.edit(self.paper, replacement_text='Pineapple', method='erase', erase_number=1)
+        self.assertEqual('test edit past end of Pineapple', self.paper.display_page())
+
 
 if __name__ == '__main__':
     unittest.main()
