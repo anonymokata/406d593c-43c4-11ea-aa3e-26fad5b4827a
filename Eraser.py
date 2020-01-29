@@ -1,4 +1,5 @@
 class Eraser(object):
+    WHITESPACE_CHARS = {' ', '\n'}
 
     def __init__(self, durability=10):
         self.durability = durability
@@ -15,6 +16,16 @@ class Eraser(object):
             self._durability = value
 
     def erase(self, paper, text_to_erase):
+        '''
+        Function to erase text from a piece of paper
+
+        Args:
+            paper (Paper): A piece of paper
+            text_to_erase (str): text that the eraser should erase
+
+        Returns:
+            None
+        '''
         count_characters_that_degrade_eraser = self._count_non_whitespace_characters(text_to_erase)
         if self.durability < count_characters_that_degrade_eraser:
             count_characters_to_remove = self.durability
@@ -29,9 +40,29 @@ class Eraser(object):
             paper.remove_text(text_to_erase)
 
     def _degrade_eraser(self, character):
-        whitespace_characters = {'\n', ' '}
-        if character not in whitespace_characters:
+        '''
+        Function to degrade eraser by correct amount according to character being erased
+
+        Args:
+            character (str): a character to be erased
+
+        Returns:
+            None
+        '''
+        if character not in self.WHITESPACE_CHARS:
             self.durability -= 1
 
     def _count_non_whitespace_characters(self, text):
-        return len(text) - text.count(' ') - text.count('\n')
+        '''
+        Function to get the count of non-whitespace characters in text
+
+        Args:
+            text (str): text to analyze
+
+        Returns:
+            The count of non-whitespace characters in the passed in text
+        '''
+        count_non_whitespace_chars = len(text)
+        for whitespace_char in self.WHITESPACE_CHARS:
+            count_non_whitespace_chars -= text.count(whitespace_char)
+        return count_non_whitespace_chars
