@@ -17,10 +17,20 @@ class Pencil(object):
             self.eraser = eraser
 
     def write(self, paper, text):
-        new_text_characters = [character for character in text]
+        '''
+        Function to write text to a piece of paper
+
+        Args:
+            paper (Paper): A piece of paper
+            text (str): text that the pencil is supposed to write
+
+        Returns:
+            None
+        '''
+        #new_text_characters = [character for character in text]
         new_text = []
 
-        for character in new_text_characters:
+        for character in text:
             if self.point_durability > 0:
                 new_text.append(character)
             else:
