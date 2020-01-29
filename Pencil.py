@@ -2,6 +2,7 @@ from Eraser import Eraser
 
 
 class Pencil(object):
+    WHITESPACE_CHARS = ['\n', ' ']
 
     def __init__(self, point_durability=None, initial_length=None, eraser=None):
         self.start_point_durability = point_durability
@@ -102,8 +103,16 @@ class Pencil(object):
             paper.replace_text_by_erase_order(new_text, erase_number)
 
     def _change_point_durability(self, character):
-        ignore_characters = ['\n', ' ']
-        if character not in ignore_characters:
+        '''
+        Function to change point durability of pencil as a character is written
+
+        Args:
+            character (str): chracter that is being written
+
+        Returns:
+            None
+        '''
+        if character not in self.WHITESPACE_CHARS:
             self.point_durability -= 1
         if character.isupper():
             self.point_durability -= 1
