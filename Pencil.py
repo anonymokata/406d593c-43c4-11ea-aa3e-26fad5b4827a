@@ -27,7 +27,6 @@ class Pencil(object):
         Returns:
             None
         '''
-        #new_text_characters = [character for character in text]
         new_text = []
 
         for character in text:
@@ -40,6 +39,15 @@ class Pencil(object):
         paper.add_text(new_text)
 
     def sharpen(self):
+        '''
+        Function to sharpen pencil, reducing point durability by 1 for each non-whitespace character
+
+        Returns:
+            None
+
+        Raises:
+            ValueError: raises error when we try to erase a pencil that has length 0
+        '''
         if self.length > 0:
             self.length -= 1
         else:
@@ -49,13 +57,39 @@ class Pencil(object):
         self.point_durability = self.start_point_durability
 
     def erase(self, paper, text_to_erase):
+        '''
+        Function to erase text from a piece of paper
+
+        Args:
+            text_to_erase (str): text that we want the pencil to erase
+
+        Returns:
+            None
+        '''
         self.eraser.erase(paper, text_to_erase)
 
-    def edit(self, paper, replacement_text, method=None, erase_number=None, location_index=None):
-        new_text_characters = [character for character in replacement_text]
+    def edit(self, paper, replacement_text, method='index', erase_number=None, location_index=0):
+        '''
+        Function to edit a piece of paper based on either an index or the location of erasure
+
+        Args:
+            paper (Paper): piece of paper
+            replacement_text (str): the text to be edited into the document
+            method (Optional[str]): Either 'index' or 'erase' depending on whether text should be
+                edited based on a given index or based on the order by which erasing took place.
+                Defaults to None.
+            erase_number (Optional[int]): Represemts when in order some text was erased, so 1
+                corresponds to the first text that was erased, 2 to the second, and so on. Defaults
+                to None.
+            location_index (Optional[int]): Represents the index location of where to begin editing.
+                Defaults to 0 so we begin editing at the start of the paper if nothing is passed in
+
+        Returns:
+            None
+        '''
         new_text = []
 
-        for character in new_text_characters:
+        for character in replacement_text:
             if self.point_durability > 0:
                 new_text.append(character)
             else:
