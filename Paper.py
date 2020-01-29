@@ -94,7 +94,7 @@ class Paper(object):
         i = 0
         while inside_of_document:
             if replacement_text[i] not in self.WHITESPACE_CHARS \
-            and end_text[i] not in self.WHITESPACE_CHARS:
+                    and end_text[i] not in self.WHITESPACE_CHARS:
                 end_text[i] = '@'
             else:
                 end_text[i] = replacement_text[i]
