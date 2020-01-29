@@ -11,7 +11,7 @@ A description of the kata can be found [here](https://github.com/PillarTechnolog
 ## Technologies
 This project is implemented in Python3
 
-## Run the Project
+## Run the Project Tests
 To run the project, open a cmd prompt or terminal and clone it locally using the link provided on GitHub:
 ```
 git clone https://github.com/meggert9/PencilDurabilityKata.git
